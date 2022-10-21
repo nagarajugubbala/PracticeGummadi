@@ -1,0 +1,55 @@
+<div class="tenders-page">
+    <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px grid">
+        <div fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let tender of tenders">
+            <mat-card>
+                <div fxLayout="column" fxLayoutGap="12px">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <a [routerLink]="['/tenders/', tender.id]">
+                            <h3>Tender ID: {{tender.id}}</h3>
+                        </a>
+                        <h3>Status: {{tender.tender_status}}</h3>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between start">
+                        <div fxLayout="column">
+                            <h5>Type of Work: {{tender.type_of_work}}</h5>
+                            <h5>Description: {{tender.description_of_work}}</h5>
+                            <h5>Type of Contract: {{tender.type_of_contract}}</h5>
+                        </div>
+                        <button mat-stroked-button>
+                            Contractors Applied
+                        </button>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="row">
+                            <mat-icon class="location-icon">location_on</mat-icon>
+                            <h5>{{tender.project_location}}</h5>
+                        </div>
+
+                        <h5><span class="text-maroon">Contract Duration: </span>{{tender.contract_duration}}</h5>
+                    </div>
+                    <div>
+                        <mat-divider></mat-divider>
+                    </div>
+
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                        <div fxLayout="row" fxLayoutAlign="center center">
+                            <h5 class="text-maroon bold-500">Tender Document</h5>
+                            <mat-icon class="download-icon">file_download</mat-icon>
+                        </div>
+                        <div fxLayout="row wrap" fxLayoutAlign="center center">
+                            <h5 class="text-maroon bold-500">PQ Form Upload</h5>
+                            <!-- <mat-icon class="upload-icon">file_upload</mat-icon> -->
+
+                            <input type="file" class="file-input" hidden (change)="onFileSelected($event)"
+                                #fileUpload>
+                            <mat-icon class="upload-icon" (click)="fileUpload.click()">file_upload</mat-icon>
+                            {{fileName}}
+                        </div>
+                        <h5><span class="text-maroon">Last Date of Submission: </span>
+                            {{tender.last_date_of_submission}}</h5>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
